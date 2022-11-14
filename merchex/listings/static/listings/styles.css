@@ -1,1 +1,3 @@
-* { background: lightblue }
+body { background: lightblue }
+
+.errorlist { margin-bottom: -10px }
