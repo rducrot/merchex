@@ -17,6 +17,8 @@
 
 <a href="{% url 'band-update' band.id %}">Modifier ce groupe</a>
 
+<a href="{% url 'band-delete' band.id %}">Supprimer ce groupe</a>
+
 <ul>
 {% for listing in band.listing_set.all %}
   <li><a href="{% url 'listing-detail' listing.id %}">{{ listing.title }}</a></li>
