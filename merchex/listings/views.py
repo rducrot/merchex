@@ -32,6 +32,20 @@ def band_create(request):
                   {"form": form})
 
 
+def band_update(request, band_id):
+    band = Band.objects.get(id=band_id)
+
+    if request.method == "POST":
+        form = BandForm(request.POST)
+        if form.is_valid:
+            band = form.save()
+            return redirect('band-detail', band.id)
+
+    form = BandForm(instance=band)
+    return render(request, "listings/band_update.html",
+                  {"form": form})
+
+
 def listing_list(request):
     listings = Listing.objects.all()
     return render(request,
@@ -55,6 +69,20 @@ def listing_create(request):
     form = ListingForm()
     return render(request,
                   "listings/listing_create.html",
+                  {"form": form})
+
+
+def listing_update(request, listing_id):
+    listing = Listing.objects.get(id=listing_id)
+
+    if request.method == "POST":
+        form = ListingForm(request.POST)
+        listing = form.save()
+        return redirect("listing-detail", listing.id)
+
+    form = ListingForm(instance=listing)
+    return render(request,
+                  "listings/listing_update.html",
                   {"form": form})
 
 
